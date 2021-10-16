@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:YoklamaSeysi"
+             x:Class="YoklamaSeysi.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:AttendanceViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout BackgroundColor="#EBF0F9">
+
+        <Frame BackgroundColor="#414141" BorderColor="#414141" CornerRadius="0" >
+            <Label Text="Dersler" FontSize="36" TextColor="#EBF0F9"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        </Frame>
+
+        <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center" Padding="10,0" BackgroundColor="#414141" >
+            <Label Text="Ders Adı" FontSize="20" WidthRequest="110"  TextColor="#EBF0F9" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+            <Label Text="D" FontSize="20" WidthRequest="45"  TextColor="#EBF0F9" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+            <Label Text="K" FontSize="20"  WidthRequest="45" TextColor="#EBF0F9" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+            <Stepper Scale="0"/>
+            <ImageButton Source="delete.png" Scale="0" />
+        </FlexLayout>
+
+        <ListView x:Name="ClassList" ItemsSource="{Binding Classes}" BackgroundColor="#EBF0F9" SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center" Padding="10,0">
+                            <Label Text="{Binding ClassName}" WidthRequest="110" FontSize="25" TextColor="#495873" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding AbsentCount}" WidthRequest="45" FontSize="25" TextColor="#495873" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding RemainingAttendance}" WidthRequest="45" FontSize="25" TextColor="#495873" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                            <Stepper Minimum="-99" Maximum="99"                     
+                                     Increment="1" BackgroundColor="#EBF0F9"  
+                                     ClassId="{Binding ClassName}" 
+                                     ValueChanged="OnStepperValueChanged"
+                                      />
+                            <ImageButton Source="delete.png" Scale="0.75"
+                                         Command="{Binding Path=BindingContext.RemoveClassCommand, Source={x:Reference ClassList}}"
+                                         CommandParameter="{Binding .}"/>
+                        </FlexLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Ders Ekle" FontSize="25" BackgroundColor="#414141" TextColor="#EBF0F9"  Clicked="LoadAddClassPage" CornerRadius="0" VerticalOptions="EndAndExpand"></Button>
+    </StackLayout>
+
+
+</ContentPage>

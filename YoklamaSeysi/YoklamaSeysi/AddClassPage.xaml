@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:YoklamaSeysi"             
+             x:Class="YoklamaSeysi.AddClassPage">
+
+    <ContentPage.BindingContext>
+        <local:AttendanceViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout BackgroundColor="#EBF0F9">
+        <Frame BackgroundColor="#414141" Margin="0,0,0,0" CornerRadius="0">
+            <Label Text="Ders Ekle" FontSize="36" TextColor="#EBF0F9"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+        </Frame>
+
+
+        <Entry x:Name="ClassNameInput"
+            Text="{Binding ClassNameInput}" 
+               Placeholder="Ders adı" FontSize="25" 
+               BackgroundColor="#EBF0F9" TextColor="#495873" 
+               HorizontalTextAlignment="Start" VerticalTextAlignment="Center"        
+               MaxLength="7" Margin="0,10,0,0"
+               />
+
+        <Entry x:Name="ClassCountPerWeekInput"
+            Text="{Binding ClassCountPerWeekInput}" 
+               Placeholder="Haftalık ders sayısı" FontSize="25" 
+               BackgroundColor="#EBF0F9" TextColor="#495873" 
+               HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
+               Keyboard="Numeric" MaxLength="2" 
+               Margin="0,10,0,0"
+               />
+
+        <Entry x:Name="FailurePercentInput"
+            Text="{Binding FailurePercentInput}" 
+               Placeholder="Devam zorunluluğu (%)" FontSize="25" 
+               BackgroundColor="#EBF0F9" TextColor="#495873" 
+               HorizontalTextAlignment="Start" VerticalTextAlignment="Center"     
+               Keyboard="Numeric" MaxLength="2" 
+               Margin="0,10,0,0"
+               />
+
+        <Entry x:Name="TotalWeekCountInput"
+            Text="{Binding TotalWeekCountInput}" 
+               Placeholder="Toplam hafta sayısı" FontSize="25" 
+               BackgroundColor="#EBF0F9" TextColor="#495873" 
+               HorizontalTextAlignment="Start" VerticalTextAlignment="Center"     
+               Keyboard="Numeric" MaxLength="2" 
+               Margin="0,10,0,0"
+               />
+
+        <Button Text="Ekle" FontSize="25"  Clicked="Add"
+                BackgroundColor="#414141" TextColor="#EBF0F9"
+                BorderWidth="0.5" CornerRadius="0"
+                BorderColor="Gray"  Command="{Binding AddClassCommand}" 
+                VerticalOptions="EndAndExpand"
+                Margin="-1" Padding="0,30" 
+                />
+
+        <Button Text="Geri dön" FontSize="25"  Clicked="GoBack"
+                BackgroundColor="#414141" TextColor="#EBF0F9" 
+                BorderWidth="0.5" BorderColor="Gray" 
+                CornerRadius="0" Margin="-1" Padding="0,30"
+                />
+
+
+    </StackLayout>
+</ContentPage>
