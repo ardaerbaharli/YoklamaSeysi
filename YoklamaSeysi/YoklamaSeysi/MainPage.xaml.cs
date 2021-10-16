@@ -20,17 +20,17 @@ namespace YoklamaSeysi
             App.Current.MainPage = new AddClassPage();
         }
 
-        public void OnStepperValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            AttendanceViewModel avm = BindingContext as AttendanceViewModel;
-            Stepper stepper = sender as Stepper;
+        //public void OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        //{
+        //    AttendanceViewModel avm = BindingContext as AttendanceViewModel;
+        //    Stepper stepper = sender as Stepper;
 
-            int newValue = Convert.ToInt32(e.NewValue);
-            int oldValue = Convert.ToInt32(e.OldValue);
-            int dif = newValue - oldValue;
-            string className = stepper.ClassId.ToString();
+        //    int newValue = Convert.ToInt32(e.NewValue);
+        //    int oldValue = Convert.ToInt32(e.OldValue);
+        //    int dif = newValue - oldValue;
+        //    string className = stepper.ClassId.ToString();
 
-            avm.UpdateAbsency(className, dif);
-        }
+        //    avm.UpdateAbsency(className, dif);
+        //}
     }
 }

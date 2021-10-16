@@ -30,11 +30,12 @@
                             <Label Text="{Binding ClassName}" WidthRequest="110" FontSize="25" TextColor="#495873" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
                             <Label Text="{Binding AbsentCount}" WidthRequest="45" FontSize="25" TextColor="#495873" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
                             <Label Text="{Binding RemainingAttendance}" WidthRequest="45" FontSize="25" TextColor="#495873" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
-                            <Stepper Minimum="-99" Maximum="99"                     
-                                     Increment="1" BackgroundColor="#EBF0F9"  
-                                     ClassId="{Binding ClassName}" 
-                                     ValueChanged="OnStepperValueChanged"
-                                      />
+
+                            <Button Text="-" FontSize="25" TextColor="#495873" BackgroundColor="#dfe3eb" CornerRadius="0"
+                                    Command="{Binding Path=BindingContext.DecreaseAbcencyCommand, Source={x:Reference ClassList}}" CommandParameter="{Binding .}"/>
+                            <Button Text="+" FontSize="25" TextColor="#495873" BackgroundColor="#dfe3eb" CornerRadius="0" 
+                                    Command="{Binding Path=BindingContext.IncreaseAbcencyCommand, Source={x:Reference ClassList}}" CommandParameter="{Binding .}" />                    
+                        
                             <ImageButton Source="delete.png" Scale="0.75"
                                          Command="{Binding Path=BindingContext.RemoveClassCommand, Source={x:Reference ClassList}}"
                                          CommandParameter="{Binding .}"/>

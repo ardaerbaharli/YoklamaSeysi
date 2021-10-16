@@ -54,13 +54,13 @@
                 BorderWidth="0.5" CornerRadius="0"
                 BorderColor="Gray"  Command="{Binding AddClassCommand}" 
                 VerticalOptions="EndAndExpand"
-                Margin="-1" Padding="0,30" 
+                Margin="-1" Padding="0,20" 
                 />
 
         <Button Text="Geri dön" FontSize="25"  Clicked="GoBack"
                 BackgroundColor="#414141" TextColor="#EBF0F9" 
                 BorderWidth="0.5" BorderColor="Gray" 
-                CornerRadius="0" Margin="-1" Padding="0,30"
+                CornerRadius="0" Margin="-1" Padding="0,20"
                 />
 
 

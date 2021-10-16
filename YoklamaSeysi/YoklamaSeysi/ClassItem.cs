@@ -4,43 +4,94 @@ using System;
 namespace YoklamaSeysi
 {
     [Table("Classes")]
-    public class ClassItem
+    public class ClassItem : ObservableProperty
     {
-        [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
-        public string ClassName { get; set; }
-        public int AbsentCount { get; set; }
-        public int ClassCountPerWeek { get; set; }
-        public int RemainingAttendance { get; set; }
-        public int FailurePercent { get; set; }
-        public int TotalWeekCount { get; set; }
+        private int id;
+        private string className;
+        private int absentCount;
+        private int classCountPerWeek;
+        private int remainingAttendance;
+        private int failurePercent;
+        private int totalWeekCount;
 
-        public void IncrementAbsent()
+        [PrimaryKey, AutoIncrement]
+        public int ID
+        {
+            get => id;
+            set
+            {
+                id = value;
+                OnPropertyChanged("ID");
+            }
+        }
+        public string ClassName
+        {
+            get => className;
+            set
+            {
+                className = value;
+                OnPropertyChanged("ClassName");
+            }
+        }
+        public int AbsentCount
+        {
+            get => absentCount;
+            set
+            {
+                absentCount = value;
+                OnPropertyChanged("AbsentCount");
+            }
+        }
+        public int ClassCountPerWeek
+        {
+            get => classCountPerWeek;
+            set
+            {
+                classCountPerWeek = value;
+                OnPropertyChanged("ClassCountPerWeek");
+            }
+        }
+        public int RemainingAttendance
+        {
+            get => remainingAttendance;
+            set
+            {
+                remainingAttendance = value;
+                OnPropertyChanged("RemainingAttendance");
+            }
+        }
+        public int FailurePercent
+        {
+            get => failurePercent;
+            set
+            {
+                failurePercent = value;
+                OnPropertyChanged("FailurePercent");
+            }
+        }
+        public int TotalWeekCount
+        {
+            get => totalWeekCount;
+            set
+            {
+                totalWeekCount = value;
+                OnPropertyChanged("TotalWeekCount");
+            }
+        }
+
+        public void IncreaseAbcency()
         {
             AbsentCount++;
             RemainingAttendance--;
         }
-
-        public void DecrementAbsent()
+        public void DecreaseAbcency()
         {
             AbsentCount--;
             RemainingAttendance++;
         }
-
-        public void AddAbsency(int days)
-        {
-            if (AbsentCount + days < 0)
-                return;
-            if (RemainingAttendance - days < 0)
-                return;
-
-            AbsentCount += days;
-            RemainingAttendance -= days;
-        }
-
         public void CalculateRemainingAttendance()
         {
-            RemainingAttendance = ClassCountPerWeek * TotalWeekCount / 100 * (100 - FailurePercent);
+            RemainingAttendance = (int)Math.Floor(ClassCountPerWeek * TotalWeekCount / 100d * (100 - FailurePercent));
         }
     }
 }
